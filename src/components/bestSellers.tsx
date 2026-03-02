@@ -15,7 +15,7 @@ export default function bestSellers() {
             <p className="px-2 text-lg items-center py-2">Grab the highest discounts before they&apos;re gone!</p>
             <div className="grid lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-2 gap-4 px-2 py-2">
                     {filtereddatabybestsellers.map((deal) => (
-                        <div key={deal.id} className="border-emerald-500 rounded-2xl bg-white text-black hover:border-green-950 hover:-translate-x-1 hover:shadow-xl">
+                        <div key={deal.id} className="border border-emerald-500 rounded-2xl bg-gray-200 text-black hover:border-green-950 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                         <div>
                             <Link
                             href={paths.giftcardshowpage(deal.title)}

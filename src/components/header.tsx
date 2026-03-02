@@ -17,7 +17,7 @@ export default function Header() {
 
     return (
         <>
-        <Navbar className="sticky top-0 bg-white z-50 py-2 shadow-sm px-3 min-w-screen">
+        <Navbar className="sticky top-0 bg-gray-200 z-50 py-2 shadow-sm px-3 min-w-screen">
             <NavbarContent justify="start">
                 <button 
                     onClick={() => setOpen(true)}

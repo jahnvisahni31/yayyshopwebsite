@@ -15,7 +15,7 @@ export default function stealTheDeal() {
             <p className="text-lg py-2 items-center">Why pay full price when these deals are right here?</p>
             <div className="grid lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-2 gap-3">
                     {filtereddatabycollection.map((deal) => (
-                        <div key={deal.id} className="border border-emerald-500 rounded-2xl bg-white text-black hover:border-green-950 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                        <div key={deal.id} className="border border-emerald-500 rounded-2xl bg-gray-200 text-black hover:border-green-950 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                         <Link
                         href={paths.giftcardshowpage(deal.title)}
                         />
