@@ -10,9 +10,11 @@ export default function giftslug({ params }: { params: Promise<{ slug: string }>
     const pr = deals.find((deal) => deal.slug === slug);
     const [denomination, setdenomination]  = useState(250);
     const [quantity, setquantity]  = useState(1);
-    const [recipientype, setRecipientType] = useState('Myself');
+    const [recipientype, setRecipientType] = useState<"Gift" | "Myself">("Myself");
     const [message, setMessage] = useState("");
     const presetamnt = [250, 500, 1000, 2000, 2500,3000 , 4000, 5000, 7000, 10000];
+    const [deliveryMode, setDeliveryMode] = useState<"Email" | "SMS" | "Both">("Email");
+    const mode = ["Email" , "SMS" , "Both"];
 
     const handlevalue = (val  : number) => {
         if (val < 250) val = 250;
@@ -43,7 +45,7 @@ export default function giftslug({ params }: { params: Promise<{ slug: string }>
                 <div className="space-y-4 py-2 px-3">
                     <h1 className="text-3xl font-bold py-2 text-center">{pr.title}</h1>
                     <div className="flex justify-center">
-                        <button className="bg-blue-600 text-white border rounded px-3 py-1">
+                        <button className="bg-blue-500 text-white border rounded px-3 py-1">
                             {pr.discount} Discount
                         </button>
                     </div>
@@ -52,7 +54,7 @@ export default function giftslug({ params }: { params: Promise<{ slug: string }>
                 </div>
             </div>
             <div>
-                <div className="items-center justify-between px-2">
+                <div className="items-center justify-between px-2 space-y-6 p-4 rounded-lg">
                     <p>Enter Denomination</p>
                     <div className="flex gap-3 mb-3">
                         {presetamnt.map((amt) => (
@@ -61,7 +63,7 @@ export default function giftslug({ params }: { params: Promise<{ slug: string }>
                                 onClick={() => setdenomination(amt)}
                                 className={`px-4 py-3 border rounded ${
                                     denomination === amt
-                                        ? "bg-blue-500 text-white"
+                                        ? "bg-blue-400 text-white"
                                         : "bg-gray-200"
                                 }`}
                             >
@@ -81,7 +83,7 @@ export default function giftslug({ params }: { params: Promise<{ slug: string }>
                 </div>
             </div>
             <div className="flex items-center justify-between px-2 py-2">
-                <p className="font-semibold mb-2">
+                <p className="font-semibold mb-2 bg-gray-300 px-2 py-1">
                     Quantity
                 </p>
                 <input 
@@ -94,7 +96,41 @@ export default function giftslug({ params }: { params: Promise<{ slug: string }>
                 />
             </div>
             <div>
-                <button className="bg-blue-600 items-center text-xl">Buy now</button>
+                <div className="space-y-6 p-4 border rounded-lg shadow">
+                    <p className="font-semibold">Delivery Type</p>
+                    <div className="grid grid-cols-2 gap-2">
+                        <button
+                            onClick={() => setRecipientType("Myself")}
+                            className={`px-4 py-2 rounded border ${recipientype === "Myself" ? "bg-blue-400 text white" : "bg-white text-black"}`}
+                        >For Myself only
+                        </button>
+                        <button
+                            onClick={() => setRecipientType("Gift")}
+                            className={`px-4 py-2 rounded border ${recipientype === "Gift" ? "bg-blue-400 text white" : "bg-white text-black"}`}
+                        >Send as a Gift
+                        </button>
+                    </div>
+                </div>
+                {recipientype === "Gift" && (
+                    <div className="space-y-2">
+                        <p className="font-semibold">Delivery mode</p>
+                            <div className="grid grid-cols-3 gap-2">
+                                {mode.map((m) => (
+                                    <button
+                                        key={m}
+                                        onClick={() => setDeliveryMode(m as "Email" | "SMS" | "Both" )}
+                                        className={`px-3 py-2 rounded border ${deliveryMode == m ? "bg-blue-400 text-white" : "bg-white text-black"}`}
+                                    >
+                                        {m}
+                                    </button>
+                                ))}
+                            </div>
+                    </div>
+                )}
+            </div>
+
+            <div className="items-center justify-between px-2 py-2 text-center">
+                <button className="px-4 py-2 rounded border hover:bg-blue-400">Buy now</button>
             </div>
         </div>
         </>

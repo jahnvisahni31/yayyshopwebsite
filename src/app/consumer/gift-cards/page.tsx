@@ -21,7 +21,7 @@ export default function brands() {
                 {deals.map((deal)=> (
                     <div key={deal.id} className="border border-emerald-500 rounded-2xl bg-gray-200 text-black hover:border-green-950 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                             <Link
-                                href={paths.giftcardshowpage(deal.title)}>
+                                href={paths.giftcardshowpage(deal.slug)}>
                                 <img 
                                     src={deal.image}
                                     alt={deal.title}
@@ -36,7 +36,7 @@ export default function brands() {
                                     {" "}
                                 </p>
                                 <p className="text-sm text-blue-800 px-2 py-2">
-                                    {deal.description}
+                                    Grab your deals now !!
                                 </p>
                             </Link>
                     </div>
