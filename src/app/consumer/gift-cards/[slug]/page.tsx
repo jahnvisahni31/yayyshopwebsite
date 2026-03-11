@@ -94,7 +94,7 @@ export default function giftslug({ params }: { params: Promise<{ slug: string }>
                 />
             </div>
             <div>
-                <button>Buy now</button>
+                <button className="bg-blue-600 items-center text-xl">Buy now</button>
             </div>
         </div>
         </>
