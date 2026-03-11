@@ -1,15 +1,16 @@
-const DEFAULT_DESC = "Grab your ones now";
+const slugify = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
-export const deals = [
+const DEFAULT_DESC = "GRAB YOUR DEALS NOW"
+
+export const rawdeals = [
     {
         id: 1,
         title: "McDonalds E-Gift Card",
-        image: "/deals/mcdgift.jpeg",
+        image: "/deals/mcd.jpeg",
         discount: "10% OFF",
         category: "Food",
-        description: DEFAULT_DESC,
+        description: "McDonald's is the world's leading global food service retailer and largest fast-food chain, with over 36,000 locations in over 100 countries. Founded in 1940, it is renowned for its iconic menu items like the Big Mac, fries, and Chicken McNuggets, operating mainly through a franchise business model.",
         collection: 'popular',
-        
     },
     {
         id: 2,
@@ -17,7 +18,7 @@ export const deals = [
         image: "/deals/pvrgift.jpeg",
         discount: "10% OFF",
         category: "Entertainment",
-        description: DEFAULT_DESC,
+        description: "PVR INOX Limited is India's largest and most premium film exhibition company, formed in 2023 by the merger of PVR Cinemas and INOX Leisure. It operates a massive network of over 1,700 screens across 111 cities in India and Sri Lanka, offering diverse viewing formats like IMAX, 4DX, and LUXE. The company is renowned for transforming the movie-going experience with superior technology and luxury amenities.",
         collection: 'popular',
     },
     {
@@ -26,7 +27,7 @@ export const deals = [
         image: "/deals/spicegift.jpeg",
         discount: "3% OFF",
         category: "Airline",
-        description: DEFAULT_DESC,
+        description: "SpiceJet is a prominent Indian low-cost airline headquartered in Gurgaon, Haryana, offering budget-friendly air travel with a focus on domestic connectivity, particularly under the UDAN scheme. Founded in 2005, it operates a fleet of Boeing 737s and Q400s, connecting numerous Indian and international destinations.",
         collection: 'popular',
     },
     {
@@ -35,7 +36,7 @@ export const deals = [
         image: "/deals/sotcgift.jpeg",
         discount: "3% OFF",
         category: "Travel",
-        description: DEFAULT_DESC,
+        description: "SOTC (formerly Kuoni Travel India) is a leading Indian travel company under Fairfax Financial Holdings via Thomas Cook (India) Limited. With over 70 years of experience, it specializes in leisure, incentive, and business travel, offering customized, escorted group, and luxury holidays for domestic and international destinations.",
         collection: 'popular',
     },
     {
@@ -44,7 +45,7 @@ export const deals = [
         image: "/deals/prestgift.jpeg",
         discount: "5% OFF",
         category: "Ecommerce",
-        description: DEFAULT_DESC,
+        description: "Prestige Smart Kitchen is India’s leading exclusive retailer of TTK Prestige appliances, offering a vast, modern range of durable, safe, and innovative cookware, induction cooktops, and kitchen tools. Focused on enhancing the cooking experience, these stores provide high-quality, user-friendly, and stylish products designed for contemporary Indian homes.",
         collection: 'popular',
     },
     {
@@ -53,7 +54,7 @@ export const deals = [
         image: "/deals/stergift.jpeg",
         discount: "5% OFF",
         category: "Travel",
-        description: DEFAULT_DESC,
+        description: "Sterling Holiday Resorts Limited is a leading Indian experiential holiday company and a subsidiary of Thomas Cook India, operating over 60 resorts across 50+ destinations. Known for pioneering vacation ownership in India, they provide diverse, curated experiences in hills, beaches, and jungles, backed by high-quality service.",
         collection: 'popular',
 
     },
@@ -63,7 +64,7 @@ export const deals = [
         image: "/deals/speedogift.jpeg",
         discount: "5% OFF",
         category: "Fashion",
-        description: DEFAULT_DESC,
+        description: "Speedo is a premier global swimwear brand specializing in durable, high-performance aquatic gear, including competitive swimwear, goggles, and fitness aids. Known for chlorine-resistant fabrics like Endurance10 and Endurance+, their products range from professional racing suits to recreational watershorts and children's swim aids.",
         collection: 'popular',
     },
     {
@@ -149,6 +150,11 @@ export const deals = [
     },
 ];
 
+export const deals = rawdeals.map((deal) => ({
+  ...deal,
+  slug: slugify(deal.title),
+}));
+
 export const menuItem = [
     
     {
@@ -215,4 +221,4 @@ export const menuItem = [
         ],
     },
 
-]
+];

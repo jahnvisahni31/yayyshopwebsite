@@ -11,6 +11,7 @@ import { FiSearch } from "react-icons/fi";
 import { useState } from 'react';
 import { FaHamburger } from 'react-icons/fa';
 import { IoClose } from "react-icons/io5";
+import SearchInput from './searchinput';
 
 export default function Header() {
     const [open, setOpen]  = useState<boolean>(false);
@@ -31,15 +32,10 @@ export default function Header() {
                     </Link>
                 </NavbarBrand>
             </NavbarContent>
-            <NavbarContent justify="center" className="flex flex-1">
-                <div className='flex items-center w-full border rounded-lg gap-2 bg-gray-50'>
-                    <FiSearch className='text-gray-500' /> 
-                    <input 
-                    placeholder='Search...' 
-                    type="text"
-                    className='w-full outline-none bg-transparent text-xl'
-                    />
-                </div>
+            <NavbarContent justify="center">
+                <NavbarItem>
+                    <SearchInput />
+                </NavbarItem>
             </NavbarContent>
             <NavbarContent justify="end" className="gap-2">
                 <NavbarItem className='text-xl text-center block mx-auto px-1 py-1 text-black hover:underline'>
