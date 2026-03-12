@@ -5,9 +5,9 @@ import { deals } from "@/data/deals";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
 
-export default function giftslug({ params }: { params: Promise<{ slug: string }> }) {
+export default function GiftSlug({ params }: { params: Promise<{ slug: string }> }) {
     const {slug } = use(params);
-    const pr = deals.find((deal) => deal.slug === slug);
+    const pr = deals?.find((deal) => deal.slug === slug);
     const [denomination, setdenomination]  = useState(250);
     const [quantity, setquantity]  = useState(1);
     const [recipientype, setRecipientType] = useState<"Gift" | "Myself">("Myself");
@@ -15,6 +15,9 @@ export default function giftslug({ params }: { params: Promise<{ slug: string }>
     const presetamnt = [250, 500, 1000, 2000, 2500,3000 , 4000, 5000, 7000, 10000];
     const [deliveryMode, setDeliveryMode] = useState<"Email" | "SMS" | "Both">("Email");
     const mode = ["Email" , "SMS" , "Both"];
+    const [recipientEmail, setRecipientEmail] = useState("");
+    const [recipientName, setRecipientName] = useState("");
+    const [inputPhone, setInputPhone] = useState("");
 
     const handlevalue = (val  : number) => {
         if (val < 250) val = 250;
@@ -23,13 +26,7 @@ export default function giftslug({ params }: { params: Promise<{ slug: string }>
     }
 
     if (!pr){
-        return <div className="p-10 text-center">Gift card not found</div>;
-
-        <Link href={'/'}>
-            <Button type="submit" className="bg-blue-950 text-shadow-amber-100">
-                Back to home page
-            </Button>
-        </Link>
+        return <div className="text-center max-w-6xl h-fit">Gift card not found</div>
     }
     return(
         <>
@@ -73,7 +70,7 @@ export default function giftslug({ params }: { params: Promise<{ slug: string }>
                     </div>
                     <p>Enter a custom amount</p>
                     <input
-                        type="text"
+                        type="number"
                         min={250}
                         max={10000}
                         value={denomination}
@@ -101,12 +98,12 @@ export default function giftslug({ params }: { params: Promise<{ slug: string }>
                     <div className="grid grid-cols-2 gap-2">
                         <button
                             onClick={() => setRecipientType("Myself")}
-                            className={`px-4 py-2 rounded border ${recipientype === "Myself" ? "bg-blue-400 text white" : "bg-white text-black"}`}
+                            className={`px-4 py-2 rounded border ${recipientype === "Myself" ? "bg-blue-400 text-white" : "bg-white text-black"}`}
                         >For Myself only
                         </button>
                         <button
                             onClick={() => setRecipientType("Gift")}
-                            className={`px-4 py-2 rounded border ${recipientype === "Gift" ? "bg-blue-400 text white" : "bg-white text-black"}`}
+                            className={`px-4 py-2 rounded border ${recipientype === "Gift" ? "bg-blue-400 text-white" : "bg-white text-black"}`}
                         >Send as a Gift
                         </button>
                     </div>
@@ -125,6 +122,99 @@ export default function giftslug({ params }: { params: Promise<{ slug: string }>
                                     </button>
                                 ))}
                             </div>
+                    </div>
+                )}
+                {recipientype === "Gift" && deliveryMode === "Email" && (
+                    <div className="space-y-2">
+                        <p className="font-semibold">Gifting details</p>
+                        <input
+                            type="text"
+                            placeholder="Recipient Name"
+                            className="border p-2 rounded"
+                            value= {recipientName}
+                            onChange={(e) => setRecipientName(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Recipient Email"
+                            className="border p-2 rounded px-3"
+                            value= {recipientEmail}
+                            onChange={(e) => setRecipientEmail(e.target.value)}
+                        />
+                        <textarea
+                            placeholder="Write a message"
+                            className="border p-2 rounded w-full"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                        />
+                        <p className="text-gray-500 text-sm">
+                            Will be delivered to this id via {deliveryMode}
+                        </p>
+                    </div>
+                )}
+                {recipientype === "Gift" && deliveryMode === "SMS" && (
+                    <div className="space-y-2">
+                        <p className="font-semibold">Gifting details</p>
+                        <input
+                            type="text"
+                            placeholder="Recipient Name"
+                            className="border p-2 rounded"
+                            value= {recipientName}
+                            onChange={(e) => setRecipientName(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Recipient Phone number"
+                            className="border p-2 rounded px-3"
+                            value= {inputPhone}
+                            onChange={(e) => setInputPhone(e.target.value)}
+                        />
+                        <textarea
+                            placeholder="Write a message"
+                            className="border p-2 rounded w-full"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                        />
+                        <p className="text-gray-500 text-sm">
+                            Will be delivered to this id via {deliveryMode}
+                        </p>
+                    </div>
+                )}
+                {recipientype === "Gift" && deliveryMode === "Both" && (
+                    <div className="space-y-2 gap-2 px-2">
+                        <p className="font-semibold">Gifting details</p>
+                        <div className="gap-2">
+                            <input
+                                type="text"
+                                placeholder="Recipient Name"
+                                className="border p-2 rounded px-2"
+                                value= {recipientName}
+                                onChange={(e) => setRecipientName(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Recipient Phone number"
+                                className="border p-2 rounded px-3 gap-2"
+                                value= {inputPhone}
+                                onChange={(e) => setInputPhone(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Recipient Email"
+                                className="border p-2 rounded px-3"
+                                value= {recipientEmail}
+                                onChange={(e) => setRecipientEmail(e.target.value)}
+                            />
+                            <textarea
+                                placeholder="Write a message"
+                                className="border p-2 rounded w-full"
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                            />
+                            <p className="text-gray-500 text-sm">
+                                Will be delivered to this id via {deliveryMode}
+                            </p>
+                        </div>
                     </div>
                 )}
             </div>

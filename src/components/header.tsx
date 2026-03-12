@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { FaHamburger } from 'react-icons/fa';
 import { IoClose } from "react-icons/io5";
 import SearchInput from './searchinput';
+import HeaderAuth from './header-auth';
 
 export default function Header() {
     const [open, setOpen]  = useState<boolean>(false);
@@ -39,9 +40,7 @@ export default function Header() {
             </NavbarContent>
             <NavbarContent justify="end" className="gap-2">
                 <NavbarItem className='text-xl text-center block mx-auto px-1 py-1 text-black hover:underline'>
-                    <Link href='/'>
-                    Login/Register
-                    </Link>
+                    <HeaderAuth />
                 </NavbarItem>
             </NavbarContent>
         </Navbar>

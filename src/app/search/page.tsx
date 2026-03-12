@@ -27,7 +27,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
             <div className="grid lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-2 gap-4 px-2 py-2">
                     {result.map((deal) => (
-                        <div key={deal.id} className="border border-emerald-500 rounded-2xl bg-gray-200 text-black hover:border-green-950 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                        <div key={deal.id} className="border px-4 border-emerald-500 rounded-2xl bg-gray-200 text-black hover:border-green-950 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                             <Link
                                 href={paths.giftcardshowpage(deal.slug)}>
                                 <img 
